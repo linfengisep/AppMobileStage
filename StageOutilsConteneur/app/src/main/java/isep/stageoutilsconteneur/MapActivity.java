@@ -1,5 +1,6 @@
 package isep.stageoutilsconteneur;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -15,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,14 +55,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private EditText mSearchText;
     private ImageView mGps;
 
+    Button btnToSpotMap;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
+
+        getLocationPermission();
+
         mSearchText = (EditText)findViewById(R.id.input_search);
         mGps =(ImageView)findViewById(R.id.ic_gps);
 
-        getLocationPermission();
+        btnToSpotMap=(Button)findViewById(R.id.btnIconMap);
+        btnToSpotMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSpot=new Intent(MapActivity.this,SpotActivity.class);
+                startActivity(intentSpot);
+            }
+        });
     }
 
     private void init(){

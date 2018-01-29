@@ -23,8 +23,6 @@ import isep.stageoutilsconteneur.helper.LocaleHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
-    Button btnclick;
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocaleHelper.onAttach(newBase,"en"));
@@ -33,22 +31,25 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG="MainActivity";
     private static final int ERROR_DIALOG_REQUEST=9001;
 
+    TextView text_view ;
+    Button btnclick;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textView=(TextView)findViewById(R.id.text_view);
-        btnclick =(Button)findViewById(R.id.btn);
-/*
+        btnclick=(Button)findViewById(R.id.go_map_btn);
+        text_view =(TextView)findViewById(R.id.text_view);
+
         btnclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mapActivity = new Intent(MainActivity,MapActivity.class);
+                Log.d(TAG,"in btn click");
+                Intent mapActivity = new Intent(MainActivity.this,MapActivity.class);
                 startActivity(mapActivity);
             }
         });
-   */
 
         if(isServiceOk()){
             init();
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void init(){
-        btnclick =(Button)findViewById(R.id.btn);
+        btnclick =(Button)findViewById(R.id.go_map_btn);
         btnclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateView(String lang) {
         Context context =LocaleHelper.setLocale(this,lang);
         Resources res = context.getResources();
-        textView.setText(res.getString(R.string.welcome_message));
+        text_view.setText(res.getString(R.string.welcome_message));
     }
 
     @Override
@@ -116,13 +117,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return true;
-    }
-//test debug;
-    public void clickHandler(View view) {
-        int j=0;
-        for (int i = 0; i <10 ; i++) {
-            j=i;
-            i=j+i;
-        }
     }
 }

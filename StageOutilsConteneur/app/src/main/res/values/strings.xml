@@ -6,4 +6,5 @@
     <string name="welcome_message">welcome</string>
     <string name="clickbtn">Google Map</string>
     <string name="search">Enter Address,City or Zip Code</string>
+    <string name="spot">Spot</string>
 </resources>
